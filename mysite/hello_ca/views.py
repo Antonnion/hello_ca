@@ -5,5 +5,10 @@ from django.http import HttpResponse
 
 
 def index(request):
-    context = {"employees":[]}
+    context = {
+        "employees": [
+            Employee(name="kei", intro_text="I am kei."),
+            Employee(name="masahiro", intro_text="I am masahiro."),
+        ]
+    }
     return render(request, 'hello_ca/index.html', context)
