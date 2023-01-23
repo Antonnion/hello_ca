@@ -1,9 +1,28 @@
-{% if latest_question_list %}
-    <ul>
-    {% for question in latest_question_list %}
-        <li><a href="/polls/{{ question.id }}/">{{ question.question_text }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No polls are available.</p>
-{% endif %}
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello Cloud Ace</title>
+</head>
+
+<body>
+    {% load static %}
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="col">
+            {{%for employee in employees%}}
+            <div class="card">
+                <img src="{% static 'hello_ca/sample.jpg' %}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{employee.name}}</h5>
+                    <p class="card-text">{{employee.intro_text}}</p>
+                </div>
+            </div>
+            {{%endfor%}}
+        </div>
+    </div>
+</body>
+
+</html>
