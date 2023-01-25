@@ -14,4 +14,7 @@ def index(request):
     return render(request, 'hello_ca/index.html', context)
 
 def upload(request):
+    if request.method == "POST":
+        name = request.POST["name"]
+        intro_text = request.POST["intro_text"]
     return render(request, 'hello_ca/upload.html')

@@ -10,16 +10,18 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <main>
-    <form class="text-center">
+    <form class="text-center" action="/upload/" method="POST">
+        {% csrf_token %}
         <div class="mb-3">
-          <label for="exampleInputEmail1" class="form-label">Name</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <label for="name" class="form-label">Name</label>
+            <input class="form-control" id="name" name="name">
         </div>
         <div class="mb-3">
-          <label for="exampleInputPassword1" class="form-label">intro_text</label>
-          <input type="password" class="form-control" id="exampleInputPassword1">
+            <label for="intro_text" class="form-label">intro_text</label>
+            <input class="form-control" id="intro_text" name="intro_text">
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
+    </form>
 </main>
+
 </html>
