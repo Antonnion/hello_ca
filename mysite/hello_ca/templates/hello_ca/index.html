@@ -42,19 +42,11 @@
             {% for employee in employees %}
             <div class="col">
                 <div class="card">
-                    {% if employee.name %}
-                    <img src="{% static 'hello_ca/images/sample.jpg' %}" style="width:269.77px; height:269.77px" alt="...">
+                    <img src="{% static 'hello_ca/images/sample.jpg' %}" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">{{employee.name}}</h5>
                             <p class="card-text">{{employee.intro_text}}</p>
                         </div>
-                    {% else %}
-                    <img src="{% static 'hello_ca/images/sample2.jpg' %}" style="width:269.77px; height:269.77px" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">{{employee.name}}</h5>
-                            <p class="card-text">{{employee.intro_text}}</p>
-                        </div>
-                    {% endif %}
                     </div>
                 </div>
             {% endfor %}
