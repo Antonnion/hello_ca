@@ -8,7 +8,7 @@
             "name": "Python: Current File",
             "type": "python",
             "request": "launch",
-            "program": "${cwd}/mysite/manage.py",
+            "program": "${cwd}/hello_ca/manage.py",
             "console": "integratedTerminal",
             "justMyCode": true, 
             "args": ["runserver"]
