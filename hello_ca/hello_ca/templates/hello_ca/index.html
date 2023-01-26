@@ -1,56 +1,60 @@
 <!DOCTYPE html>
 <html lang="ja">
+<!doctype html>
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
     <title>Hello Cloud Ace</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 
 {% load static %}
 
 <body>
-    <div class="container-fluid m-5 text-center">
-        <h1>Hello Cloud Ace!</h1>
-        <div class="text-center;">
+    <div class="container max-w-screen-lg mx-auto m-10">
+        <h1 class="text-5xl">Hello Cloud Ace!</h1>
+        <div>
             <p>
                 Department
                 <select name="use">
-                  <option value="BP">Business Promotion</option>
-                  <option value="T">Technique</option>
-                  <option value="FO">Foreign Operation</option>
-                  <option value="BA">Business Administration</option>
+                    <option value="BP">Business Promotion</option>
+                    <option value="T">Technique</option>
+                    <option value="FO">Foreign Operation</option>
+                    <option value="BA">Business Administration</option>
                 </select>
             </p>
-              <p>
+            <p>
                 Name
-                <input type="text" size="30" placeholder="名前を入力" maxlength="10"></p>
-              </p>
-              <a style="display:inline-block; background:#bf0000; padding:8px; margin: 10px; border-radius:8px; text-align:center; width:100px;">
-                <font color="#ffffff" size="4">
-                 <b>
-                  検索
-                 </b>
-                </font> 
-              </a>
-
+                <input type="text" size="30" placeholder="名前を入力" maxlength="10">
+            </p>
+            <b>
+                検索
+            </b>
         </div>
-        <div class="row row-cols-1 row-cols-md-3 g-4">
+
+        <a href="upload/" type="button" class="bg-indigo-500 rounded-lg shadow-lg cursor-pointer text-white text-3xl my-5 p-4">
+            Upload 
+        </a>
+
+        <div class="grid gap-x-8 gap-y-5 grid-cols-4">
             {% for employee in employees %}
-            <div class="col">
-                <div class="card">
-                    <img src="{% static 'hello_ca/images/sample.jpg' %}" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">{{employee.name}}</h5>
-                            <p class="card-text">{{employee.intro_text}}</p>
-                        </div>
-                    </div>
+            <div class="basis-1/5 gap-5 border border-gray-200 rounded-lg shadow dark:bg-gray-700">
+                <img class="rounded-t-lg" src="{% static 'hello_ca/images/sample.jpg' %}" alt="{{employee.name}}" />
+                <div class="p-5">
+                    <a href="#">
+                        <h5 class="mb-2 text-3xl font-bold tracking-tight text-white">
+                            {{employee.name}}
+                        </h5>
+                    </a>
+                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                        {{employee.intro_text}}
+                    </p>
                 </div>
+            </div>
             {% endfor %}
         </div>
     </div>
 </body>
+
 </html>
