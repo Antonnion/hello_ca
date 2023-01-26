@@ -1,22 +1,22 @@
 from django.shortcuts import render
 from django.views import generic
+from django.http import HttpRequest
 
 from .models import Employee
+from . import models
 
 
-class IndexView(generic.ListView):
+class ListView(generic.ListView):
     template_name = "hello_ca/index.html"
     context_object_name = "employees"
 
     def get_queryset(self):
-        return [
-            Employee(name="kei", intro_text="I am kei."),
-            Employee(name="masahiro", intro_text="I am masahiro.")
-        ]
+        return Employee.objects.all()[:5]
 
 
-def upload(request):
+def upload(request: HttpRequest):
     if request.method == "POST":
-        name = request.POST["name"]
-        intro_text = request.POST["intro_text"]
+        model = models.EmployeeForm(request.POST)
+        model.save()
+        return render(request, 'hello_ca/upload.html')
     return render(request, 'hello_ca/upload.html')
