@@ -12,8 +12,28 @@
 {% load static %}
 
 <body>
+    <div class="mt-5 border-b-4 border-b-blue-700">
+        <nav class="max-w-screen-lg mx-auto my-5">
+            <div class="text-5xl font-bold">
+                <span
+                    class="text-7xl font-extrabold text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-700 to-fuchsia-700">
+                    Hello Cloud Ace!
+                </span>
+
+                <button
+                    class="px-3 text-gray-500 rounded-lg ransition ease-in-out delay-150 hover:scale-110 duration-300 hover:ring ring-blue-500">
+                    <a href="/">Home</a>
+                </button>
+
+                <button
+                    class="px-3 text-gray-500 rounded-lg ransition ease-in-out delay-150 hover:scale-110 duration-300 hover:ring ring-blue-500">
+                    <a href="{% url 'upload' %}">Upload</a>
+                </button>
+            </div>
+        </nav>
+    </div>
+
     <div class="container max-w-screen-lg mx-auto m-10">
-        <h1 class="text-5xl">Hello Cloud Ace!</h1>
         <div>
             <p>
                 Department
@@ -33,24 +53,21 @@
             </b>
         </div>
 
-        <a href="upload/" type="button" class="bg-indigo-500 rounded-lg shadow-lg cursor-pointer text-white text-3xl my-5 p-4">
-            Upload 
-        </a>
-
         <div class="grid gap-x-8 gap-y-5 grid-cols-4">
             {% for employee in employees %}
-            <div class="basis-1/5 gap-5 border border-gray-200 rounded-lg shadow dark:bg-gray-700">
-                <img class="rounded-t-lg" src="{% static 'hello_ca/images/sample.jpg' %}" alt="{{employee.name}}" />
-                <div class="p-5">
-                    <a href="#">
-                        <h5 class="mb-2 text-3xl font-bold tracking-tight text-white">
+            <div class="basis-1/5 gap-5 border border-gray-200 rounded-lg shadow bg-gray-600">
+                <a href="{% url 'detail' employee.id %}">
+                    <img class="rounded-t-lg" src="{% static 'hello_ca/images/sample.jpg' %}" alt="{{employee.name}}" />
+                    <div class="p-5">
+                        <p class="mb-2 text-3xl font-bold tracking-tight text-white">
                             {{employee.name}}
-                        </h5>
-                    </a>
-                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                        {{employee.intro_text}}
-                    </p>
-                </div>
+                        </p>
+
+                        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                            {{employee.intro_text}}
+                        </p>
+                    </div>
+                </a>
             </div>
             {% endfor %}
         </div>

@@ -11,7 +11,12 @@ class ListView(generic.ListView):
     context_object_name = "employees"
 
     def get_queryset(self):
-        return Employee.objects.all()[:5]
+        return Employee.objects.all()[:8]
+
+
+def detail(request: HttpRequest, pk: int):
+    employee = models.Employee.objects.get(pk=pk)
+    return render(request, "hello_ca/detail.html", {"employee": employee})
 
 
 def upload(request: HttpRequest):
