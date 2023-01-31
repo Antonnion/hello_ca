@@ -7,11 +7,36 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Detail</title>
 </head>
-
-<body>
+{% load static %}
+<body class="text-center">
     <div class="container max-w-screen-lg mx-auto m-10">
-        {{employee.name}}
+        <img class="rounded-t-lg" src="{% static 'hello_ca/images/sample.jpg' %}" alt="{{employee.name}}" width="auto" height="auto"/>
+        <div class="p-5">
+            <p class="mb-2 text-3xl font-bold tracking-tight">
+                {{employee.name}}
+            </p>
+            <p>
+                Department
+                <select name="use">
+                    <option value="BP">Business Promotion</option>
+                    <option value="T">Technique</option>
+                    <option value="FO">Foreign Operation</option>
+                    <option value="BA">Business Administration</option>
+                </select>
+            </p>
+            <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                {{employee.intro_text}}
+            </p>
+        </div>
+    </div>
+    <form method="POST">
+        {% csrf_token %}
+        <button class="btn" type="submit" onclick='return confirm("本当に削除しますか？");'>
+            <div style="display:inline-block; background:#bf0000; padding:8px; border-radius:8px; text-align:center; width:100px;"><font color="#ffffff" size="4"><b>削除</b></font></div>
+        </button>
+    </form>
+    <div align="center">
+        <a href="http://127.0.0.1:8000/">ホームに戻る</a>    
     </div>
 </body>
-
 </html>
