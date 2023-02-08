@@ -5,11 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>Detail</title>
+    <title>Detail View</title>
 </head>
 {% load static %}
 
 <body class="text-center">
+    {% include "./header.html" %}
     <div class="container max-w-screen-lg mx-auto m-10">
         <img class="rounded-t-lg" src="{% static 'hello_ca/images/sample.jpg' %}" alt="{{employee.name}}" width="auto"
             height="auto" />
@@ -31,18 +32,27 @@
             </p>
         </div>
     </div>
-    <form method="POST">
-        {% csrf_token %}
-        <button class="btn" type="submit" onclick='return confirm("本当に削除しますか？");'>
-            <div
-                style="display:inline-block; background:#bf0000; padding:8px; border-radius:8px; text-align:center; width:100px;">
-                <font color="#ffffff" size="4"><b>削除</b></font>
-            </div>
+
+    <div>
+        <button type="submit">
+            <a href="{% url 'edit' employee.id %}">
+                <div
+                    style="display:inline-block; background:#0000bf; padding:8px; border-radius:8px; text-align:center; width:100px;">
+                    <font color="#ffffff" size="4"><b>Edit</b></font>
+                </div>
+            </a>
         </button>
-    </form>
-    <div align="center">
-        <a href="{% url 'index' %}">ホームに戻る</a>
+        <form action="{% url 'detail' employee.id %}" method="POST">
+            {% csrf_token %}
+            <button type="submit" onclick='return confirm("本当に削除しますか？");'>
+                <div
+                    style="display:inline-block; background:#bf0000; padding:8px; border-radius:8px; text-align:center; width:100px;">
+                    <font color="#ffffff" size="4"><b>Delete</b></font>
+                </div>
+            </button>
+        </form>
     </div>
+
 </body>
 
 </html>

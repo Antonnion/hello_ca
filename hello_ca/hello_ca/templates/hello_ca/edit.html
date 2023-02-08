@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Upload View</title>
+    <title>Edit View</title>
 </head>
 
 {% load static %}
@@ -13,13 +13,13 @@
 <body class="h-screen">
     {% include "./header.html" %}
     <div class="container max-w-screen-md mx-auto m-10">
-        <form action="/upload/" method="POST" class="text-4xl">
+        <form action="{% url 'edit' employee.id %}" method="POST" class="text-4xl">
             {% csrf_token %}
             <div class="grid my-4 md:grid-cols-2 md:gap-6">
                 <div>
                     <input type="text" name="first_name" id="first_name"
                         class="block w-full text-gray-900 bg-transparent border-0 border-b-2 border-gray-400 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                        required />
+                        value="{{employee.first_name}}" required />
                     <label for="first_name" class="text-sm text-gray-400">
                         First name
                     </label>
@@ -27,7 +27,7 @@
                 <div>
                     <input type="text" name="last_name" id="last_name"
                         class="block w-full text-gray-900 bg-transparent border-0 border-b-2 border-gray-400 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                        required />
+                        value="{{employee.last_name}}" required />
                     <label for="last_name" class="text-sm text-gray-400">
                         Last name
                     </label>
@@ -38,7 +38,7 @@
                 <div>
                     <input type="text" name="first_name_kana" id="first_name_kana"
                         class="block w-full text-gray-900 bg-transparent border-0 border-b-2 border-gray-400 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                        required />
+                        value="{{employee.first_name_kana}}" required />
                     <label for="first_name_kana" class="text-sm text-gray-400">
                         First name kana
                     </label>
@@ -46,7 +46,7 @@
                 <div>
                     <input type="text" name="last_name_kana" id="last_name_kana"
                         class="block w-full text-gray-900 bg-transparent border-0 border-b-2 border-gray-400 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                        required />
+                        value="{{employee.last_name_kana}}" required />
                     <label for="last_name_kana" class="text-sm text-gray-400">
                         Last name kana
                     </label>
@@ -57,7 +57,7 @@
                 <select name="depertment"
                     class="block w-full text-gray-900 bg-transparent border-0 border-b-2 border-gray-400 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                     required>
-                    <option value="" selected></option>
+                    <option value="{{employee.depertment}}" selected></option>
                     {% for depertment in depertments %}
                     <option value="{{depertment.pk}}">{{depertment.name}}</option>
                     {% endfor %}
@@ -70,7 +70,7 @@
             <div class="grid my-4 grid-cols-1">
                 <input type="text" name="intro_text" id="intro_text"
                     class="block w-full text-gray-900 bg-transparent border-0 border-b-2 border-gray-400 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                    required />
+                    value="{{employee.intro_text}}" required />
                 <label for="intro_text" class="text-sm text-gray-400">
                     Intro text
                 </label>

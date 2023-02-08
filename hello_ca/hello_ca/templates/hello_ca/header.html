@@ -4,15 +4,12 @@
 <div class="mt-5 mb-10 border-b-4 border-b-blue-700">
     <nav class="max-w-screen-lg mx-auto my-5">
         <div class="text-5xl font-bold">
-            <span
-                class="text-7xl font-extrabold text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-700 to-fuchsia-700">
-                Hello Cloud Ace!
-            </span>
-
-            <button
-                class="px-3 text-gray-500 rounded-lg ransition ease-in-out delay-150 hover:scale-110 duration-300 hover:ring ring-blue-500">
-                <a href="/">Home</a>
-            </button>
+            <a href="{% url 'index' %}">
+                <span
+                    class="text-7xl font-extrabold text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-700 to-fuchsia-700">
+                    Hello Cloud Ace!
+                </span>
+            </a>
 
             <button
                 class="px-3 text-gray-500 rounded-lg ransition ease-in-out delay-150 hover:scale-110 duration-300 hover:ring ring-blue-500">
