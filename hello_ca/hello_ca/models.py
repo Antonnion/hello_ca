@@ -6,23 +6,29 @@ class Depertment(models.Model):
     name = models.CharField(max_length=64)
 
 
-class EmployeeForm(ModelForm):
+class DepertmentFrom(ModelForm):
     class Meta:
         model = Depertment
-        fields = ["name", "name"]
+        fields = ["name"]
 
 
 class Employee(models.Model):
-    name = models.CharField(max_length=64)
+    first_name = models.CharField(max_length=64)
+    last_name = models.CharField(max_length=64, null=True)
+    first_name_kana = models.CharField(max_length=64, null=True)
+    last_name_kana = models.CharField(max_length=64, null=True)
     depertment = models.ForeignKey(
         Depertment, on_delete=models.CASCADE, null=True, blank=True)
     intro_text = models.CharField(max_length=256)
 
     def __str__(self) -> str:
-        return self.name
+        return self.first_name
 
 
 class EmployeeForm(ModelForm):
     class Meta:
         model = Employee
-        fields = ["name", "depertment", "intro_text"]
+        fields = [
+            "first_name", "last_name", "first_name_kana", "last_name_kana",
+            "depertment", "intro_text"
+        ]

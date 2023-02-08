@@ -5,12 +5,11 @@ from django.views import generic
 from . import models
 
 
-class ListView(generic.ListView):
-    template_name = "hello_ca/index.html"
-    context_object_name = "employees"
-
-    def get_queryset(self):
-        return models.Employee.objects.all()[:8]
+def index(request: HttpRequest):
+    return render(request, "hello_ca/index.html", {
+        "employees": models.Employee.objects.all()[:8],
+        "depertments": models.Depertment.objects.all() 
+    })
 
 
 def detail(request: HttpRequest, pk: int):
