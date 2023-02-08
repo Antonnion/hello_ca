@@ -13,25 +13,37 @@
 <body>
     {% include "./header.html" %}
     <div class="container max-w-screen-lg mx-auto m-10">
-        <div>
-            <p>
-                Department
-                <select name="depertment">
-                    {% for depertment in depertments %}
-                    <option value="{{depertment.pk}}">{{depertment.name}}</option>
-                    {% endfor %}
-                </select>
-            </p>
-            <p>
-                Name
-                <input type="text" size="30" placeholder="名前を入力" maxlength="10">
-            </p>
-            <b>
-                検索
-            </b>
+        <div class="my-10">
+            <form action="{% url 'index' %}" method="GET" class="text-3xl">
+                <div class="my-4">
+                    <select name="depertment"
+                        class="block w-full text-gray-900 bg-transparent border-0 border-b-2 border-gray-400 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer">
+                        <option value="" selected></option>
+                        {% for depertment in depertments %}
+                        <option value="{{depertment.pk}}">{{depertment.name}}</option>
+                        {% endfor %}
+                    </select>
+                    <label for="depertment" class="text-2xl text-gray-700">
+                        所属
+                    </label>
+                </div>
+
+                <div class="my-4">
+                    <input type="text" name="search_name" id="search_name"
+                        class="block w-full text-gray-900 bg-transparent border-0 border-b-2 border-gray-400 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" />
+                    <label for="search_name" class="text-2xl text-gray-700">
+                        名前
+                    </label>
+                </div>
+
+                <button type="submit"
+                    class="my-4 h-12 text-white w-full bg-purple-600 shadow-lg shadow-purple-500/50 rounded-lg text-center">
+                    Search employee
+                </button>
+            </form>
         </div>
 
-        <div class="grid gap-x-8 gap-y-5 grid-cols-4">
+        <div class="grid gap-x-8 gap-y-5 grid-cols-4 my-10">
             {% for employee in employees %}
             <div class="basis-1/5 gap-5 border border-gray-200 rounded-lg shadow bg-gray-600">
                 <a href="{% url 'detail' employee.id %}">
