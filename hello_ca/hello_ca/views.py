@@ -3,7 +3,6 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.views import generic
 
 from . import models
-from .models import Employee
 
 
 class ListView(generic.ListView):
@@ -11,7 +10,7 @@ class ListView(generic.ListView):
     context_object_name = "employees"
 
     def get_queryset(self):
-        return Employee.objects.all()[:8]
+        return models.Employee.objects.all()[:8]
 
 
 def detail(request: HttpRequest, pk: int):
@@ -28,4 +27,7 @@ def upload(request: HttpRequest):
         model = models.EmployeeForm(request.POST)
         model.save()
         return render(request, 'hello_ca/upload.html')
-    return render(request, 'hello_ca/upload.html')
+    depertments = models.Depertment.objects.all()
+    return render(request, 'hello_ca/upload.html', {
+        "depertments": depertments
+    })
