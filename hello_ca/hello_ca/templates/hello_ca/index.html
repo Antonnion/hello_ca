@@ -19,11 +19,11 @@
                     <select name="search_department"
                         class="block w-full text-gray-900 bg-transparent border-0 border-b-2 border-gray-400 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer">
                         <option value="" selected></option>
-                        {% for depertment in depertments %}
-                        <option value="{{depertment.pk}}">{{depertment.name}}</option>
+                        {% for department in departments %}
+                        <option value="{{department.pk}}">{{department.name}}</option>
                         {% endfor %}
                     </select>
-                    <label for="depertment" class="text-2xl text-gray-700">
+                    <label for="department" class="text-2xl text-gray-700">
                         所属
                     </label>
                 </div>

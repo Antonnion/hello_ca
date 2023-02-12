@@ -10,7 +10,7 @@
 
 {% load static %}
 
-<body class="h-screen">
+<body>
     {% include "./header.html" %}
     <div class="container max-w-screen-md mx-auto m-10">
         <form action="/upload/" method="POST" class="text-4xl">
@@ -54,15 +54,15 @@
             </div>
 
             <div class="grid my-4 grid-cols-1">
-                <select name="depertment"
+                <select name="department"
                     class="block w-full text-gray-900 bg-transparent border-0 border-b-2 border-gray-400 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                     required>
                     <option value="" selected></option>
-                    {% for depertment in depertments %}
-                    <option value="{{depertment.pk}}">{{depertment.name}}</option>
+                    {% for department in departments %}
+                    <option value="{{department.pk}}">{{department.name}}</option>
                     {% endfor %}
                 </select>
-                <label for="depertment" class="text-sm text-gray-400">
+                <label for="department" class="text-sm text-gray-400">
                     Department
                 </label>
             </div>

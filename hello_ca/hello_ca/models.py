@@ -2,13 +2,13 @@ from django.db import models
 from django.forms import ModelForm
 
 
-class Depertment(models.Model):
+class Department(models.Model):
     name = models.CharField(max_length=64)
 
 
-class DepertmentFrom(ModelForm):
+class DepartmentFrom(ModelForm):
     class Meta:
-        model = Depertment
+        model = Department
         fields = ["name"]
 
 
@@ -17,8 +17,8 @@ class Employee(models.Model):
     last_name = models.CharField(max_length=64, null=True)
     first_name_kana = models.CharField(max_length=64, null=True)
     last_name_kana = models.CharField(max_length=64, null=True)
-    depertment = models.ForeignKey(
-        Depertment, on_delete=models.CASCADE, null=True, blank=True)
+    department = models.ForeignKey(
+        Department, on_delete=models.CASCADE, null=True, blank=True)
     intro_text = models.CharField(max_length=256)
 
     def __str__(self) -> str:
@@ -30,5 +30,5 @@ class EmployeeForm(ModelForm):
         model = Employee
         fields = [
             "first_name", "last_name", "first_name_kana", "last_name_kana",
-            "depertment", "intro_text"
+            "department", "intro_text"
         ]

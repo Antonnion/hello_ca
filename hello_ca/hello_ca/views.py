@@ -22,7 +22,7 @@ def index(request: HttpRequest):
 
         if search_department:
             employees = employees & models.Employee.objects.filter(
-                Q(depertment=int(search_department))
+                Q(department=int(search_department))
             )
 
         employees = employees[:DISPLAY_EMPLOYEE_COUNT]
@@ -33,7 +33,7 @@ def index(request: HttpRequest):
     # TODO: employeesが0のときの例外処理が欲しい．
     return render(request, "hello_ca/index.html", {
         "employees": employees,
-        "depertments": models.Depertment.objects.all()
+        "departments": models.Department.objects.all()
     })
 
 
@@ -50,9 +50,9 @@ def upload(request: HttpRequest):
         model_form = models.EmployeeForm(request.POST)
         model_form.save()
         return render(request, 'hello_ca/upload.html')
-    depertments = models.Depertment.objects.all()
+    departments = models.Department.objects.all()
     return render(request, 'hello_ca/upload.html', {
-        "depertments": depertments
+        "departments": departments
     })
 
 
@@ -63,8 +63,8 @@ def edit(request: HttpRequest, pk: int):
         if model_form.is_valid():
             model_form.save()
             return redirect("detail", pk=pk)
-    depertments = models.Depertment.objects.all()
+    departments = models.Department.objects.all()
     return render(request, 'hello_ca/edit.html', {
         "employee": employee,
-        "depertments": depertments
+        "departments": departments
     })
