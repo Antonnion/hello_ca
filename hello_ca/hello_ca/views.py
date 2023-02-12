@@ -11,12 +11,22 @@ DISPLAY_EMPLOYEE_COUNT = 8
 def index(request: HttpRequest):
     if len(request.GET):
         search_name = request.GET["search_name"]
+        search_department = request.GET["search_department"]
+
         employees = models.Employee.objects.filter(
             Q(first_name__icontains=search_name)
             | Q(last_name__icontains=search_name)
             | Q(first_name_kana__icontains=search_name)
             | Q(last_name_kana__icontains=search_name)
-        )[:DISPLAY_EMPLOYEE_COUNT]
+        )
+
+        if search_department:
+            employees = employees & models.Employee.objects.filter(
+                Q(depertment=int(search_department))
+            )
+
+        employees = employees[:DISPLAY_EMPLOYEE_COUNT]
+
     else:
         employees = models.Employee.objects.all()[:DISPLAY_EMPLOYEE_COUNT]
 
