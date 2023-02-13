@@ -73,7 +73,7 @@
                     </li>
                     {% for page in pagers %}
                     <li>
-                        <a href="{% url 'index' %}/{{page}}"
+                        <a href="{% url 'index' page%}"
                             class="px-3 py-2 leading-tight border border-gray-300 hover:bg-gray-100 hover:text-gray-700 ">
                             {{page}}
                         </a>
