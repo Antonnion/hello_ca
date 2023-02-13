@@ -9,6 +9,7 @@ DISPLAY_EMPLOYEE_COUNT = 8
 
 
 def index(request: HttpRequest, page: int = 1):
+    
     if len(request.GET):
         search_name = request.GET["search_name"]
         search_department = request.GET["search_department"]
@@ -25,10 +26,15 @@ def index(request: HttpRequest, page: int = 1):
                 Q(department=int(search_department))
             )
 
-        employees = employees[:DISPLAY_EMPLOYEE_COUNT]
+        employees = employees[
+            (page-1)*DISPLAY_EMPLOYEE_COUNT:page*DISPLAY_EMPLOYEE_COUNT
+            ]
 
     else:
-        employees = models.Employee.objects.all()[:DISPLAY_EMPLOYEE_COUNT]
+        employees = models.Employee.objects.all()[
+            (page-1)*DISPLAY_EMPLOYEE_COUNT:page*DISPLAY_EMPLOYEE_COUNT
+            ]
+    
 
     # TODO: employeesが0のときの例外処理が欲しい．
     return render(request, "hello_ca/index.html", {
