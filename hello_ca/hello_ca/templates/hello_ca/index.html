@@ -53,7 +53,7 @@
                             {{employee.first_name}} {{employee.last_name}}
                         </p>
 
-                        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                        <p class="mb-3 font-normal text-gray-300 ">
                             {{employee.intro_text}}
                         </p>
                     </div>
@@ -61,7 +61,35 @@
             </div>
             {% endfor %}
         </div>
+
+        <div>
+            <nav class="grid mx-auto text-xl text-gray-500">
+                <ul class="flex justify-center">
+                    <li>
+                        <a href="{% url 'index' current_page|add:-1%}"
+                            class="px-3 py-2 ml-0 leading-tight border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 ">
+                            Previous
+                        </a>
+                    </li>
+                    {% for page in pagers %}
+                    <li>
+                        <a href="{% url 'index' %}/{{page}}"
+                            class="px-3 py-2 leading-tight border border-gray-300 hover:bg-gray-100 hover:text-gray-700 ">
+                            {{page}}
+                        </a>
+                    </li>
+                    {% endfor %}
+                    <li>
+                        <a href="{% url 'index' current_page|add:1 %}"
+                            class="px-3 py-2 leading-tight border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 ">
+                            Next
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
     </div>
+
 </body>
 
 </html>

@@ -8,7 +8,7 @@ from . import models
 DISPLAY_EMPLOYEE_COUNT = 8
 
 
-def index(request: HttpRequest):
+def index(request: HttpRequest, page: int = 1):
     if len(request.GET):
         search_name = request.GET["search_name"]
         search_department = request.GET["search_department"]
@@ -33,7 +33,9 @@ def index(request: HttpRequest):
     # TODO: employeesが0のときの例外処理が欲しい．
     return render(request, "hello_ca/index.html", {
         "employees": employees,
-        "departments": models.Department.objects.all()
+        "departments": models.Department.objects.all(),
+        "current_page": page,
+        "pagers": [page]
     })
 
 
